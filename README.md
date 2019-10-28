@@ -20,3 +20,4 @@ Project以下にはファイルの種類によってフォルダ分けをしま�
 
 ## Assets
 * UFOキャッチャー：http://hamstern.air-nifty.com/comic_studio3d/2013/05/3dufo-85a9.html
+* SDユニティちゃん1.01 (Git非追跡)：http://unity-chan.com/download/releaseNote.php?id=SDUnityChan
