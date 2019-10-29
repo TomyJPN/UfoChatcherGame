@@ -14,6 +14,9 @@ public class UfoController : MonoBehaviour {
 
   Animator animator;
 
+  [SerializeField]
+  bool debugMode;
+
   int state;
   enum stateNum {
     idle,
@@ -38,48 +41,55 @@ public class UfoController : MonoBehaviour {
       arrowImages[i].color = new Color(1f, 1f, 1f);
     }
 
-    if(state==0 && Input.GetKey("space")) {
+    GetKey();
+    
+  }
+
+  void GetKey() {
+
+
+    if (state == 0 && Input.GetKey("space")) {
       animator.SetTrigger("open");
       state = (int)stateNum.getDown;
       Invoke("StartCatch", 4f);
     }
 
     //→
-    if (Input.GetKey("right")|| state == (int)stateNum.goR) {
+    if ((Input.GetKey("right")&& state==0 )|| state == (int)stateNum.goR) {
       Move = new Vector3(3f, 0, 0);
       rb.velocity = Move;
       arrowImages[0].color = orangeColor;
     }
     //←
-    else if (Input.GetKey("left")) {
+    else if (Input.GetKey("left") && state == 0) {
       Move = new Vector3(-3f, 0, 0);
       rb.velocity = Move;
       arrowImages[1].color = orangeColor;
     }
     //↑
-    else if (Input.GetKey("up")) {
+    else if (Input.GetKey("up") && state == 0) {
       Move = new Vector3(0, 0, 3f);
       rb.velocity = Move;
       arrowImages[2].color = orangeColor;
     }
     //↓
-    else if (Input.GetKey("down") ||state == (int)stateNum.goB){
+    else if ((Input.GetKey("down") && state == 0) || state == (int)stateNum.goB) {
       Move = new Vector3(0, 0, -3f);
       rb.velocity = Move;
       arrowImages[3].color = orangeColor;
     }
-    else if (Input.GetKey("s") || (state == (int)stateNum.getDown && transform.position.y>10f)) {
+    else if ((Input.GetKey("s")&&debugMode) || (state == (int)stateNum.getDown && transform.position.y > 10f)) {
       Move = new Vector3(0, -3f, 0);
       rb.velocity = Move;
     }
-    else if (Input.GetKey("w") || state==(int)stateNum.standUp) {
+    else if ((Input.GetKey("w")&&debugMode )|| state == (int)stateNum.standUp) {
       Move = new Vector3(0, 3f, 0);
       rb.velocity = Move;
     }
     else {
       Move = new Vector3(0, 0, 0);
       rb.velocity = Move;
-      
+
     }
   }
 

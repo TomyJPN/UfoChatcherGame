@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Guide
+  - doll
+  - gem
   layers:
   - Default
   - TransparentFX
