@@ -22,7 +22,7 @@ public class SerialHandler : MonoBehaviour {
   private string message_;
   private bool isNewMessageReceived_ = false;
 
-  void Awake() {
+  void Start() {
     Open();
   }
 
@@ -33,7 +33,11 @@ public class SerialHandler : MonoBehaviour {
     isNewMessageReceived_ = false;
   }
 
-  void OnDestroy() {
+  void OnDisable() {
+    Close();
+  }
+
+    void OnDestroy() {
     Close();
   }
 
@@ -53,7 +57,7 @@ public class SerialHandler : MonoBehaviour {
     thread_.Start();
   }
 
-  private void Close() {
+  public void Close() {
     isNewMessageReceived_ = false;
     isRunning_ = false;
 
